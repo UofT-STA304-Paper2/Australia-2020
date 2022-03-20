@@ -1,12 +1,12 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
+title: "Survey of Australians' Life Satisfaction in 2020"
 author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: LINK."
+  - Yuxuan Yang
+  - Puyu Liu
+  - Fengyuan Tang
+thanks: "Code and data are available at: https://github.com/UofT-STA304-Paper2/Australia-2020."
 date: "`r format(Sys.time(), '%d %B %Y')`"
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "In this paper, we will analyze the General Social Survey's methodology, discuss the questionnaire, and convey our new findings as well as some interesting points and weaknesses. It is found that there is an upward trend on the mean life satisfaction score with the age going higher, and heterosexual has a higher overall mean score than homosexual and bisexual. People’s overall scores have decreased in 2020 because of the covid pandemic. This matters because this survey provides statistical basis on numerous topics in the society through analyzing the relationships between characteristics."
 output:
   bookdown::pdf_document2
 toc: FALSE
@@ -18,44 +18,101 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(janitor)
+library(readxl)
+library(knitr)
 ```
 
 # Introduction
 
-You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point). 
+The 2020 General Social Survey (@citeGSS) provides data on the social characteristics, well-being, and social experiences of people in Australia (@citeGSS). This survey was conducted over a 4-month period from 15th June to 5th September 2020 during the COVID-19 pandemic (@citeresult). Based on current events relating to the COVID-19, we wanted to focus on Australians' life satisfaction levels. 
+
+As people have been impacted by COVID-19, we believe that there would be some important changes in the patterns of their daily lives. Our aim is to analyze the differences in the life satisfaction of different groups through these survey results. We also created a short survey to assess Australians' opinions towards their daily lives. In this way, the care for marginalized groups can be promoted. Furthermore, it could improve government policies and make society more inclusive. Also, there would be an improvement of happiness for those groups with low life satisfaction scores. 
+The supplementary survey we created includes sampling without replacement. It collects information on various variables that might affect Australian people's well-being, together with people's opinions about Australian society in varying aspects. Though this is an online survey, it is significant that our sample population should be reached via email. The mailing letter would contain the goal of this survey, a URL that is linked to this paper. Also, a QR code is needed for them to get access to the survey. Moreover, we aimed to introduce the survey to appeal to all individuals to reduce the response bias and achieve statistically significant results. 
+
+In the data section, we would analyze the survey's methodology, and its key features, strengths, and weakness. We would also include a discussion of the questionnaire. Furthermore, we would convey our findings in the results section, including summary statistics, tables, graphs, images, and statistical analysis. Moreover, we would include discussions of some interesting points and weaknesses of our paper. 
+
 
 
 
 # Data
 
+## Survey's methodology & key features
+The Australian General Social Survey analyzes all usual residents in Australia aged 15 and over (@citeresult). Regarding the Geographical coverage, the data is collected from approximately 5,300 households around Australia, but people who live in remote areas are not included (@citeresult). The survey's collection methodology is in the form of an online survey and telephone interview due to the COVID-19 pandemic. The key features of the General Social Survey (@citeGSS) are that it provides data on the well-being, voluntary works, and unpaid supports, as well as social experiences of people. Key strength includes that it shows the multi-dimensional nature of relative advantage and disadvantage across the population (@citeresult). The importance includes that it provides statistics on numerous topics, which can influence society. Key topics include in this survey are life satisfaction, personal stressors, family and community support, trust, and so on (@citeresult). The population contains people with psychological problems or long-term health problems, disabled, migrants, temporary residents as well as people with different sexual orientations. This is a randomly selected sample, so a person aged greater than 15 in a household could be chosen to complete the GSS questionnaire. This person was randomly chosen after all usual residents of the household were listed (@citeresult). 
+
+The survey aims to explore the relative outcomes of people who are more vulnerable to socioeconomic disadvantage (@citeresult). Thus, people in these areas are more possible to be selected (@citeresult). The sample is recruited by randomly selecting households from each selected area to participate in the survey. The frame converts the results of the sample of people surveyed into estimates for the whole population. This was done with weighting. To be specific, each person or household was given a number, which is known as a weight (@citeresult). Then, a person or household's initial weight was based on their probability of being selected (@citeresult). After that, the level weights of the person and household are then calibrated to align with independent estimates of the in-scope population (@citeresult). The number of fully responding households is 5,304, with a response rate of 60.5%. The trade-offs include that there was no face-to-face follow-up for non-responding households in the GSS 2020 (@citeresult). Moreover, the non-response rate is 37.9% due to the COVID-19 pandemic, which is very high. Specifically, 3,764 people were completed by the household online and 1,540 were completed through telephones with an ABS interviewer (@citeresult).
+
+## Data preview
+
+In this paper, we focused on analyzing the well-being and life satisfaction of Australians. We used R programming language (@citeR), tidy-verse(@citetidy),  janitor(@citejanitor),  readxl(@citereadxl), knitr (@citeknitr), ggplot2 (@citeggplot2), and dplyr(@citedplyr).
+
+We first read in the data, and then we created a table to take a glimpse of some of our data. Table1 displays the glimpse of 20 rows of our Mean Life Satisfaction Score data-set. Variables include age group, recent migrants and temporary residents, has disability and so on. Specifically, it is observed that there are many NAs since some respondents were unable or unwilling to give a response (@citeresult). Also, the data-set is not tidy. 
+After that, we extracted life satisfaction mean scores by age and sex. We created a new variable called life_satis_age, and cleaned the data by renaming some of the variables. Then, we created a variable called by_sex, which contains the age group, male score, and female score. After that, we created a bar plot called "Life Satisfaction By Age & Sex". The x axis shows the age group and the y axis displays the mean life satisfaction score. The female score is represented in red and the male score is represented in blue. Figure \@ref(fig:Figure1) illustrates the mean life satisfaction score of Australians in 2020 by age group and sex. It shows that only in the age group of 40 to 54, the male score is higher than the female score. Also, in the age group of 25 to 39, women and men have an equal mean life satisfaction score. Otherwise, the female scores are higher.
+Moreover, there were not similar datasets that could have been used. This is because the data was collected in the 2020 General Social Survey from 15th June to 5th September 2020 during the COVID-19 pandemic (@citeresult). Also, the previous survey was run in 2019, and was conducted once every four years from 2002 to 2014 (@citeresult). 
+
+## Summary statistics
+
+For the well-being, the overall life satisfaction is 7.2 out of 10 in 2020, which is less than that in 2019 and 2014. According to the General Social Survey, 59 percent of Australians have experienced at least one personal stressors in the last 12 months (General Social Survey). This was similar to 2019, which is 56 percent (General Social Survey). Moreover, 33 percent of Australians reported that they always or often feel rushed for time (General Social Survey). 
+
+## Discussion of questionnare
+
+Advantages show that this questionnaire is very detailed, and the questions asked were comprehensive. For instance, the questionnaire studies the frequency of helping others doing domestic works, home maintenance, and so on. Thus, it reveals that the questions asked have a strong tendency. Weakness includes that the General Social Survey has excluded the visitors to private dwellings, overseas visitors who have not been working or studying in Australia for 12 months or more, members of non-Australian defense forces stationed in Australia, non-Australian diplomats, people in Very Remote areas, and so on (@citeresult). This indicates that response bias may occur since responses collected are not enough. For example, it is possible that people who live in remote areas could have a lower life satisfaction score. This is because they may have less entertainment compared to urban areas, and they may take a long time on the way to their work. Therefore, the sample is not fully representative of the population.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Read in the data
+table_8 <- read_excel("/cloud/project/inputs/data/GSS_Table8.xlsx", 
+    sheet = "Table 8.1_Mean Score")
+```
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Read in the data
 library(tidyverse)
-table_8 <- readxl::read_excel("~/Australia-2020/inputs/data/GSS_Table8.xlsx", sheet = "Table 8.1_Mean Score")
-```
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-# Read in the data
-library(tidyverse)
-table_8_RSE <- readxl::read_excel("~/Australia-2020/inputs/data/GSS_Table8.xlsx", sheet = "Table 8.2_RSE, mean")
+table_8_RSE <- read_excel("/cloud/project/inputs/data/GSS_Table8.xlsx", 
+    sheet = "Table 8.2_RSE, mean")
 ```
 
-Talk more about it.
+```{r Table1, echo = FALSE, warning=FALSE}
+# Create a table to take a glimpse of some of our data
+library(knitr)
 
-Also bills and their average (Figure \@ref(fig:billssssss)). (Notice how you can change the height and width so they don't take the whole page?)
+table_8_to_glimpse <- table_8[5:25, 1:6] 
 
-Talk way more about it. 
-
-
-# Results
+table_8_to_glimpse %>%
+  kable(caption = "Glimpse 20 rows of our Mean Life Satisfaction Score dataset")
+```
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Extract life satisfaction mean scores by age
 life_satis_age <- as.data.frame(table_8[8:13,])
 life_satis_age <- life_satis_age[2:6,] %>% clean_names() %>%
-  rename(age_group = australian_bureau_of_statistics, mean_score = x12)
+  rename(age_group = australian_bureau_of_statistics, male_score = x10, female_score = x11, mean_score = x12)
 ```
 
-```{r, Figure1, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Age Group", echo=FALSE, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Extract life satisfaction mean scores by age
+by_sex <- life_satis_age %>%
+  select(age_group, male_score, female_score)
+
+by_sex <- by_sex %>%
+  pivot_longer(-c(age_group), names_to = "sex", values_to = "score")
+```
+
+```{r, Figure1, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Age Group & Sex", echo=FALSE, warning=FALSE, message=FALSE}
+by_sex %>%
+  ggplot(aes(x = age_group, y = score, fill = sex)) +
+  geom_bar(position="dodge", stat="identity") +
+  labs(title = "Life Satisfaction By Age & Sex",
+       x = "Age Group",
+       y = "Mean Life Satisfaction Score") +
+  theme_minimal()
+```
+
+\newpage
+
+# Results
+
+
+
+```{r, Figure2, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Age Group", echo=FALSE, warning=FALSE, message=FALSE}
 # Draw bar plot showing life satisfaction mean score by age groups.
 life_satis_age %>%
   ggplot(aes(x = age_group, y = mean_score, fill = age_group)) +
@@ -66,6 +123,8 @@ life_satis_age %>%
   theme_minimal()
 ```
 
+\newpage
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Extract life satisfaction mean scores by mental health condition
 life_satis_mental_health <- as.data.frame(table_8[18:19,])
@@ -73,7 +132,7 @@ life_satis_mental_health <- life_satis_mental_health %>% clean_names() %>%
   rename(menal_health_condition = australian_bureau_of_statistics, mean_score = x12)
 ```
 
-```{r, Figure2, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Mental Health Condition", echo=FALSE, warning=FALSE, message=FALSE}
+```{r, Figure3, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Mental Health Condition", echo=FALSE, warning=FALSE, message=FALSE}
 # Draw bar plot showing life satisfaction mean score by mental health conditions.
 life_satis_mental_health %>%
   ggplot(aes(x = menal_health_condition, y = mean_score, colour = menal_health_condition, fill = menal_health_condition)) +
@@ -85,6 +144,8 @@ life_satis_mental_health %>%
   theme_minimal()
 ```
 
+\newpage
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Extract life satisfaction mean scores by mental health condition
 life_satis_health <- as.data.frame(table_8[21:22,])
@@ -92,7 +153,7 @@ life_satis_health <- life_satis_health %>% clean_names() %>%
   rename(health_condition = australian_bureau_of_statistics, mean_score = x12)
 ```
 
-```{r, Figure3, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Health Condition", echo=FALSE, warning=FALSE, message=FALSE}
+```{r, Figure4, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Health Condition", echo=FALSE, warning=FALSE, message=FALSE}
 # Draw bar plot showing life satisfaction mean score by health conditions.
 life_satis_health %>%
   ggplot(aes(x = health_condition, y = mean_score, fill = health_condition)) +
@@ -104,6 +165,8 @@ life_satis_health %>%
   theme_minimal()
 ```
 
+\newpage
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Extract life satisfaction mean scores by disability
 life_satis_disability <- as.data.frame(table_8[24:25,])
@@ -111,7 +174,7 @@ life_satis_disability <- life_satis_disability %>% clean_names() %>%
   rename(disability_or_not = australian_bureau_of_statistics, mean_score = x12)
 ```
 
-```{r, Figure4, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Disability Condition", echo=FALSE, warning=FALSE, message=FALSE}
+```{r, Figure5, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Disability Condition", echo=FALSE, warning=FALSE, message=FALSE}
 # Draw bar plot showing life satisfaction mean score by disability conditions.
 life_satis_disability %>%
   ggplot(aes(x = disability_or_not, y = mean_score, fill = disability_or_not)) +
@@ -123,6 +186,8 @@ life_satis_disability %>%
   theme_minimal()
 ```
 
+\newpage
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Extract life satisfaction mean scores by immigration status
 life_satis_immigrate <- as.data.frame(table_8[15:16,])
@@ -130,7 +195,7 @@ life_satis_immigrate <- life_satis_immigrate %>% clean_names() %>%
   rename(recent_migrants_or_not = australian_bureau_of_statistics, mean_score = x12)
 ```
 
-```{r, Figure5, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Immigration Status", echo=FALSE, warning=FALSE, message=FALSE}
+```{r, Figure6, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Immigration Status", echo=FALSE, warning=FALSE, message=FALSE}
 # Draw bar plot showing life satisfaction mean score by immigration status
 life_satis_immigrate %>%
   ggplot(aes(x = recent_migrants_or_not, y = mean_score, fill = recent_migrants_or_not)) +
@@ -142,6 +207,8 @@ life_satis_immigrate %>%
   theme_minimal()
 ```
 
+\newpage
+
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Extract RSE of life satisfaction mean scores by immigration status
@@ -150,7 +217,7 @@ life_satis_immigrate_RSE <- life_satis_immigrate_RSE %>% clean_names() %>%
   rename(recent_migrants_or_not = australian_bureau_of_statistics, RSE_mean_score = x12)
 ```
 
-```{r, Figure6, fig.cap="RSE of Mean Life Satisfaction Score of Australians in 2020 By Immigration Status", echo=FALSE, warning=FALSE, message=FALSE}
+```{r, Figure7, fig.cap="RSE of Mean Life Satisfaction Score of Australians in 2020 By Immigration Status", echo=FALSE, warning=FALSE, message=FALSE}
 # Draw bar plot showing life satisfaction mean score by immigration status
 life_satis_immigrate_RSE %>%
   ggplot(aes(x = recent_migrants_or_not, y = RSE_mean_score, fill = recent_migrants_or_not)) +
@@ -162,6 +229,8 @@ life_satis_immigrate_RSE %>%
   theme_minimal()
 ```
 
+\newpage
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Extract life satisfaction mean scores by sexual orientation
 life_satis_sex_orien <- as.data.frame(table_8[27:28,])
@@ -169,7 +238,7 @@ life_satis_sex_orien <- life_satis_sex_orien %>% clean_names() %>%
   rename(sexual_orientation = australian_bureau_of_statistics, mean_score = x12)
 ```
 
-```{r, Figure7, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Sexual Orientation", echo=FALSE, warning=FALSE, message=FALSE}
+```{r, Figure8, fig.cap="Mean Life Satisfaction Score of Australians in 2020 By Sexual Orientation", echo=FALSE, warning=FALSE, message=FALSE}
 # Draw bar plot showing life satisfaction mean score by sexual orientation.
 life_satis_sex_orien %>%
   ggplot(aes(x = sexual_orientation, y = mean_score, fill = sexual_orientation)) +
@@ -181,6 +250,8 @@ life_satis_sex_orien %>%
   theme_minimal()
 ```
 
+\newpage
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Extract RSE of life satisfaction scores by sexual orientation
 life_satis_sex_orien_RSE <- as.data.frame(table_8_RSE[27:28,])
@@ -188,7 +259,7 @@ life_satis_sex_orien_RSE <- life_satis_sex_orien_RSE %>% clean_names() %>%
   rename(sexual_orientation = australian_bureau_of_statistics, RSE_of_mean = x12)
 ```
 
-```{r, Figure8, fig.cap="RSE of Mean Life Satisfaction Score of Australians in 2020 By Sexual Orientation", echo=FALSE, warning=FALSE, message=FALSE}
+```{r, Figure9, fig.cap="RSE of Mean Life Satisfaction Score of Australians in 2020 By Sexual Orientation", echo=FALSE, warning=FALSE, message=FALSE}
 # Draw bar plot showing life RSE of satisfaction mean score by sexual orientation.
 life_satis_sex_orien_RSE %>%
   ggplot(aes(x = sexual_orientation, y = RSE_of_mean, fill = sexual_orientation)) +
@@ -200,35 +271,57 @@ life_satis_sex_orien_RSE %>%
   theme_minimal()
 ```
 
-# Result
-
-
-The data of the overall life satisfaction rate analyzed different groups of people by sex, which contains 3 columns: Males, Females, Total persons respectively. Figure 1 shows the mean life satisfaction scores among different age groups: 15 – 24, 25 – 39, 40 – 54, 55 – 69, 70 years old and over respectively. It shows an obvious upward trend on the mean life satisfaction score with the age going higher (from a mean score of 6.9 of people aged from 15 – 34, to 7.9 of people aged 70 years or older. Figure two divided people into two groups by their migration status, which results in similar mean scores between Recent migrants and non-recent migrant. But non-recent migrants tend to have a higher mean score especially for females refer to the data. Figure 3 shows the mean scores of people with a mental health condition and people without a mental health condition (a score of 5.8 compared to 7.4). Same as mental health, people with a long-term physical health condition also tend to have a lower mean score of life satisfaction (Figure 4) Figure 5 shows that people with disability have a mean score of 6.7, compared to 7.4 of people without disability. Figure 6 shows the mean scores between homosexual and heterosexual people. We concluded that Heterosexual has a higher overall mean score than homosexual and bisexual. Within the male homosexual group, their life satisfaction score is as much as heterosexual. Figure 7 – 8 shows the relative standard error of mean, for the Figure 2 and Figure 6. Both shows that the RSE of two different groups differs to a large extent. A large RSE means that the scores widely spread around the population mean. For example, gay, lesbian or Bisexual has a much larger RSE than Heterosexual, so we can draw a conclusion that Heterosexual people have relatively concentrated life satisfaction scores. 
-
-Figure 9-10 showed the scores among several aggregated groups. By comparing the overall life satisfaction mean scores from different years (2014, 2019, 2020). We found that people’s overall scores decreased a bit in 2020 (From around 7.6 to 7.2). As of covid pandemic is introduced in australia in January 2020, people’s life satisfaction score fell by around 0.3 unit. 
-
-
 \newpage
+
+The data of the overall life satisfaction rate analyzed different groups of people by sex, which contains 3 columns: Males, Females, Total persons respectively. Figure \@ref(fig:Figure2) shows the mean life satisfaction scores among different age groups: 15 – 24, 25 – 39, 40 – 54, 55 – 69, 70 years old and over respectively. It shows an obvious upward trend on the mean life satisfaction score with the age going higher (from a mean score of 6.9 of people aged from 15 – 34, to 7.9 of people aged 70 years or older. Figure \@ref(fig:Figure6) divided people into two groups by their migration status, which results in similar mean scores between Recent migrants and non-recent migrant. But non-recent migrants tend to have a higher mean score especially for females refer to the data (@citeresult). Figure \@ref(fig:Figure3) shows the mean scores of people with a mental health condition and people without a mental health condition (a score of 5.8 compared to 7.4). Same as mental health, people with a long-term physical health condition also tend to have a lower mean score of life satisfaction (Figure \@ref(fig:Figure4)) Figure \@ref(fig:Figure5) shows that people with disability have a mean score of 6.7, compared to 7.4 of people without disability. Figure \@ref(fig:Figure6) shows the mean scores between homosexual and heterosexual people. We concluded that Heterosexual has a higher overall mean score than homosexual and bisexual. Within the male homosexual group, their life satisfaction score is as much as heterosexual. Figure \@ref(fig:Figure7) and Figure \@ref(fig:Figure9) shows the relative standard error of mean. Both shows that the RSE of two different groups differs to a large extent. A large RSE means that the scores widely spread around the population mean. For example, gay, lesbian or Bisexual has a much larger RSE than Heterosexual, so we can draw a conclusion that Heterosexual people have relatively concentrated life satisfaction scores. 
+
+Figure \@ref(fig:Figure1) in the data section showed the scores among several aggregated groups. By comparing the overall life satisfaction mean scores from different years (2014, 2019, 2020), we found that people’s overall scores decreased a bit in 2020 (From around 7.6 to 7.2). As of covid pandemic is introduced in australia in January 2020, people’s life satisfaction score fell by around 0.3 unit. 
+\newpage
+
+
 # Discussion
-As the mean life satisfaction score goes lower while the age group goes younger, we observed a negative effect of aging. This is mainly because life satisfaction of older people is mainly affected by their life style. While younger people have a lower/decreasing life satisfaction, government should emphasize more on social/work benefits to reduce the living cost of younger people, as the outer happiness takes the mainly role in their life satisfaction. It is clear that the mean life satisfaction score is higher in the heterosexual group. But according to the RSE difference between the homosexual group and heterosexual group. We found that Australia has an unstable distribution of life satisfaction among different sexuality groups. It reflects that Australia needs to improve the life quality of homosexual group and try to eliminate the discrimination on the homosexual/bisexual group. People with physical or mental conditions or disabilities have a much lower mean life satisfaction score than normal people, and this gap is increasing by time. Government should pay more attention on deploying more social benefits to people with mental health problems and disables. 
 
-•	Weakness
-Statistics weakness: …
+## First Discussion Point
 
-This survey converted people’s life satisfaction into a number (life satisfaction score). This is apparently not enough for 
+As the mean life satisfaction score goes lower while the age group goes younger, we observed a positive effect of aging. This is mainly because life satisfaction of older people is mainly affected by their life style. While younger people have a lower/decreasing life satisfaction, government should emphasize more on social/work benefits to reduce the living cost of younger people, as the outer happiness takes the mainly role in their life satisfaction. It is clear that the mean life satisfaction score is higher in the heterosexual group. But according to the RSE difference between the homosexual group and heterosexual group, we found that Australia has an unstable distribution of life satisfaction among groups with different sexual orientations, which reflects that the government of Australia needs to improve the living  quality of homosexual group and try to eliminate the discrimination on the homosexual/bisexual group. 
+ 
+## Second Discussion Point
+People with major physical or mental conditions or disabilities have a much lower mean life satisfaction score than people without these major conditions, and this gap is increasing by time. Government should pay more attention on deploying more social benefits to people with mental health problems and disabilities. With good use of life satisfaction survey, governments could gain more knowledge of how to improve the life quality of some specific demographic groups.
+
+## Weaknesses
+
+This survey converted people’s life satisfaction into a numerical number (life satisfaction score). This is apparently not enough for assessing the overall satisfaction level. Satisfaction contains factors such as healthy physical being, inner happiness and social life. Furthermore, the population of this survey contains a larger proportion of disabled people and people with mental/physical health problems than usual, so this might make the survey biased to an extent. 
+
+## How To Proceed In the Future 
+
+
 \newpage
 
 \appendix
 
 # Appendix {-}
 
+Link to our survey: https://docs.google.com/forms/d/e/1FAIpQLSd7j1FaWfGA13mVcCd5J7JTyjxB2n-IuFqmdB1nqSwS2uv-TA/viewform?usp=sf_link
 
-# Additional details
+![IMG 2.](/cloud/project/outputs/paper/Picture2.png)
+\newpage
+![IMG 3.](/cloud/project/outputs/paper/Picture3.png)
+\newpage
+![IMG 4.](/cloud/project/outputs/paper/Picture4.png)
+\newpage
+![IMG 5.](/cloud/project/outputs/paper/Picture5.png)
+\newpage
+
+![IMG 6.](/cloud/project/outputs/paper/Picture6.png)
+
+![IMG 7.](/cloud/project/outputs/paper/QR.png)
 
 
 \newpage
 
 
 # References
+
+
 
 
