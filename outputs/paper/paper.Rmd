@@ -294,6 +294,8 @@ This survey converted people’s life satisfaction into a numerical number (life
 
 ## How To Proceed In the Future 
 
+Cluster sampling might be a good approach to collect more representative samples from the population. Because cluster sampling divides the total population into several demographic groups, the responses we get from samples would be more representative among the whole Australian population, due to the fact that we could collect information intentionally from some specific subgroups. In terms of converting life satisfaction into numbers, we could be more specific on the wording of our survey questions. For example, we could redefine life satisfaction score into multiple aspects, such as household income, number of kids per household, etc.
+
 
 \newpage
 
@@ -303,22 +305,26 @@ This survey converted people’s life satisfaction into a numerical number (life
 
 Link to our survey: https://docs.google.com/forms/d/e/1FAIpQLSd7j1FaWfGA13mVcCd5J7JTyjxB2n-IuFqmdB1nqSwS2uv-TA/viewform?usp=sf_link
 
-![IMG 2.](/cloud/project/outputs/paper/Picture2.png)
-\newpage
-![IMG 3.](/cloud/project/outputs/paper/Picture3.png)
-\newpage
-![IMG 4.](/cloud/project/outputs/paper/Picture4.png)
-\newpage
-![IMG 5.](/cloud/project/outputs/paper/Picture5.png)
-\newpage
+![QR code of our Survey](/cloud/project/outputs/paper/QR.png)
 
-![IMG 6.](/cloud/project/outputs/paper/Picture6.png)
-
-![IMG 7.](/cloud/project/outputs/paper/QR.png)
+![Screenshot #1](/cloud/project/outputs/paper/p1.png)
 
 
-\newpage
+![Screenshot #2](/cloud/project/outputs/paper/p2.png)
 
+![Screenshot #3](/cloud/project/outputs/paper/p3.png)
+
+
+![Screenshot #4](/cloud/project/outputs/paper/p4.png)
+
+
+
+![Screenshot #5](/cloud/project/outputs/paper/p5.png)
+
+
+
+
+\newpage
 
 # References
 
