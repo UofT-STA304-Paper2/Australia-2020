@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.3.8)  20 MAR 2022 21:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.3.8)  21 MAR 2022 02:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -554,7 +554,7 @@ Overfull \hbox (51.18994pt too wide) in paragraph at lines 152--200
  [][] 
  []
 
-<paper_files/figure-latex/Figure1-1.pdf, id=35, 457.71pt x 316.18124pt>
+<paper_files/figure-latex/Figure1-1.pdf, id=36, 457.71pt x 316.18124pt>
 File: paper_files/figure-latex/Figure1-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/Figure1-1.pdf>
 Package pdftex.def Info: paper_files/figure-latex/Figure1-1.pdf  used on input 
@@ -668,13 +668,13 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 388.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 388.
  ) 
 Here is how much of TeX's memory you used:
- 13506 strings out of 481239
- 198201 string characters out of 5920378
+ 13502 strings out of 481239
+ 198159 string characters out of 5920378
  485465 words of memory out of 5000000
  28350 multiletter control sequences out of 15000+600000
- 606086 words of font info for 126 fonts, out of 8000000 for 9000
+ 605920 words of font info for 124 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,42p,2007b,400s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,8n,42p,2005b,400s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/shar
 e/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm
@@ -682,7 +682,7 @@ e/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm
 fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pf
 b></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type
 1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb>
-Output written on paper.pdf (21 pages, 447560 bytes).
+Output written on paper.pdf (21 pages, 447569 bytes).
 PDF statistics:
  366 PDF objects out of 1000 (max. 8388607)
  292 compressed objects within 3 object streams
